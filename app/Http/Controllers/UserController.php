@@ -15,4 +15,15 @@ class UserController extends Controller
          'users' => $users
        ]);
     }
+    public function edit($user_id){
+      $user = User::find($user_id);
+      return view('users.editusr', compact('user'));
+    }
+    public function update(Request $data, $user_id){
+      $user = User::find($user_id);
+      $user->name = $data['name'];
+      $user->email = $data['email'];
+      $user->update();
+      return redirect('users');
+    }
 }
