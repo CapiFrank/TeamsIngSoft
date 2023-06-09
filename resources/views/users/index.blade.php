@@ -10,7 +10,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 bg-white">
             <div class="py-4 border-b">
 
-                <x-primary-button>{{ __('Create User') }}</x-primary-button>
+                <a href="{{ route('create') }}">
+                    <x-primary-button>{{ __('Create User') }}</x-primary-button>
+                </a>
             </div>
             <ul role="list" class="divide-y divide-gray-100">
                 @foreach ($users as $user)
