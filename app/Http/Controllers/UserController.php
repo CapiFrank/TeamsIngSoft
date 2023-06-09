@@ -15,4 +15,13 @@ class UserController extends Controller
          'users' => $users
        ]);
     }
+
+    public function destroy($id){
+
+      $user = User::find($id);
+
+      $user->delete();
+
+      return redirect()->route('users.index');
+    }
 }
