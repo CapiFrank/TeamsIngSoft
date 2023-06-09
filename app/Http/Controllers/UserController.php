@@ -18,18 +18,16 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
-
+ 
         $user = new User();
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->job = $request->job;
         $user->password = $request->password;
+       
         $user->save();
-        $users = User::all();
+        
 
-        return view('users.index', [
-          'users' => $users
-        ]);
+        return redirect()->route('users.index');
     }
 }

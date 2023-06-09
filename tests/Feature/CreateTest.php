@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Feature;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -15,11 +15,14 @@ class CreateTest extends TestCase
      */
     public function test_create(): void
     {
+        $userlogin = User::factory()->create();
+
+        $this->actingAs($userlogin);
         $user = User::factory()->make();
-        var_dump($user);
-        $response = $this->post(route('users.create'), $user->toArray());
-    
-        $response->assertRedirect();
+        $data = $user->toArray();
+        $data['password'] = $user->password;
+        $response = $this->post(route('users.create'), $data);
+        $response->assertRedirect(route('users.index'));
     
         $this->assertDatabaseHas('users', [
             'email' => $user->email,
