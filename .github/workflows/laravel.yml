@@ -33,3 +33,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+    - name: Deploy
+      uses: jbrooksuk/laravel-forge-action@v1.0.2
+      with:
+        trigger_url: ${{ secrets.TRIGGER_URL }}
