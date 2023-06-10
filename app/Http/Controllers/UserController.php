@@ -26,9 +26,8 @@ class UserController extends Controller
         $user->password = $request->password;
        
         $user->save();
-        
-
         return redirect()->route('users.index');
+    }
       
     public function edit($user_id){
       $user = User::find($user_id);
@@ -39,7 +38,8 @@ class UserController extends Controller
       $user = User::find($user_id);
       $user->name = $data['name'];
       $user->email = $data['email'];
+      $user->job = $data['job'];
       $user->update();
-      return redirect('users');
+      return redirect()->route('users.index');
     }
 }

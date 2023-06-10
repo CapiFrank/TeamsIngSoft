@@ -18,6 +18,7 @@ class CreateTest extends TestCase
         $userlogin = User::factory()->create();
 
         $this->actingAs($userlogin);
+        
         $user = User::factory()->make();
         $data = $user->toArray();
         $data['password'] = $user->password;

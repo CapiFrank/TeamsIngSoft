@@ -25,6 +25,10 @@
                     <x-input-label value="Email"/>
                     <x-text-input value="{{$user->email}}" name="email"/>
                 </div>
+                <div class="max-w-xl pt-2">
+                    <x-input-label value="Job"/>
+                    <x-text-input value="{{$user->job}}" name="job"/>
+                </div>
             </div>
             <p class="pt-2"/>
             <x-primary-button type="submit">Enviar</x-primary-button>
