@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,6 +19,20 @@ class UserController extends Controller
   
     public function create(Request $request)
     {
+      $validator = Validator::make($request->all(), [
+        'name' => 'required',
+        'job' => 'required',
+        'email' => [
+            'required',
+            'email',
+            'unique:users,email'
+        ],
+        'password' => 'required|confirmed'
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
  
         $user = new User();
         $user->name = $request->name;
@@ -35,6 +50,19 @@ class UserController extends Controller
     }
       
     public function update(Request $data, $user_id){
+      $validator = Validator::make($data->all(), [
+        'name' => 'required',
+        'job' => 'required',
+        'email' => [
+            'required',
+            'email',
+            'unique:users,email'
+        ]
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
       $user = User::find($user_id);
       $user->name = $data['name'];
       $user->email = $data['email'];

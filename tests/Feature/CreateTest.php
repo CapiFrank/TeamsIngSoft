@@ -22,6 +22,7 @@ class CreateTest extends TestCase
         $user = User::factory()->make();
         $data = $user->toArray();
         $data['password'] = $user->password;
+        $data['password_confirmation'] = $user->password;
         $response = $this->post(route('users.create'), $data);
         $response->assertRedirect(route('users.index'));
     

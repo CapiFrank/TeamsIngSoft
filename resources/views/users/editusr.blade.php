@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('User') }}
@@ -17,18 +17,21 @@
                 @csrf
                 @method('PUT')
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <x-input-label value="Name"/>
-                    <x-text-input value="{{$user->name}}" name="name"/>
-                </div>
-                <div class="max-w-xl pt-2">
-                    <x-input-label value="Email"/>
-                    <x-text-input value="{{$user->email}}" name="email"/>
-                </div>
-                <div class="max-w-xl pt-2">
-                    <x-input-label value="Job"/>
-                    <x-text-input value="{{$user->job}}" name="job"/>
-                </div>
+                    <div>
+                        <x-input-label for="name" :value="__('Name')" />
+                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{$user->name}}" required autofocus autocomplete="name" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    </div>
+                    <div class="mt-4">
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$user->email}}" required autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                    <div>
+                        <x-input-label for="job" :value="__('Job')" />
+                        <x-text-input id="job" class="block mt-1 w-full" type="text" name="job" value="{{$user->job}}" required autofocus autocomplete="job" />
+                        <x-input-error :messages="$errors->get('job')" class="mt-2" />
+                    </div>
             </div>
             <p class="pt-2"/>
             <x-primary-button type="submit">Enviar</x-primary-button>
@@ -37,4 +40,4 @@
         </div>
 
     </div>
-</x-app-layout>
+</x-guest-layout>
