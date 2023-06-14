@@ -16,6 +16,18 @@ class UserController extends Controller
          'users' => $users
        ]);
     }
+    public function filter(Request $request)
+    {
+        $search = $request->input('search');
+    
+        $users = User::where('name', 'like', "%$search%")
+                     ->orWhere('email', 'like', "%$search%")
+                     ->get();
+    
+          return view('users.index', [
+            'users' => $users
+          ]);
+    }
   
     public function create(Request $request)
     {

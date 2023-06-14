@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/filter', [UserController::class, 'filter'])->name('users.filter');
     Route::post('/user', [UserController::class, 'create'])->name('users.create');
     Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('users.update');
