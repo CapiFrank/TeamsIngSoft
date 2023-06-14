@@ -83,4 +83,24 @@ class UserController extends Controller
       $user->update();
       return redirect()->route('users.index');
     }
+  
+   /* public function destroy($user){
+
+      $user = User::find($user);
+      $user->delete();
+
+      return redirect()->route('users.index');
+    } */
+
+    public function destroy($userId)
+{
+    $user = User::find($userId);
+
+    if ($user) {
+        $user->delete();
+    }
+
+    return redirect()->route('users.index');
+}
+  
 }
