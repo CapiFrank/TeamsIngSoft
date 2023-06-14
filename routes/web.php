@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\ProfileController;
@@ -34,9 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
     Route::post('/user', [UserController::class, 'create'])->name('users.create');
     Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('users.update');
+   Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 });
+
 
 require __DIR__.'/auth.php';
