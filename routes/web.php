@@ -20,6 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/create', function () {
+    return view('users.create');
+})->name('create');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,7 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::post('/user', [UserController::class, 'create'])->name('users.create');
+    Route::get('/user/edit/{user_id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/user/update/{user_id}', [UserController::class, 'update'])->name('users.update');
+   Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 });
 
 
