@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -68,7 +69,7 @@ class UserController extends Controller
         'email' => [
             'required',
             'email',
-            'unique:users,email'
+            Rule::unique('users')->ignore($user_id),
         ]
     ]);
 
