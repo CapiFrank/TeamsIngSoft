@@ -10,7 +10,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 bg-white">
             <div class="py-4 border-b">
 
-                <x-primary-button>{{ __('Create User') }}</x-primary-button>
+                <a href="{{ route('create') }}">
+                    <x-primary-button>{{ __('Create User') }}</x-primary-button>
+                </a>
             </div>
             <ul role="list" class="divide-y divide-gray-100">
                 @foreach ($users as $user)
@@ -18,7 +20,7 @@
                         <div class="flex gap-x-4">
                             <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://ui-avatars.com/api/?name={{ $user->name }}" alt="">
                             <div class="min-w-0 flex-auto">
-                                <p class="text-sm font-semibold leading-6 text-gray-900">{{ $user->name }}</p>
+                                <a href="{{ url('user/edit/'.$user->id) }}" ><p class="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-400">{{ $user->name }}</p></a>
                                 <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $user->email }}</p>
                             </div>
                         </div>
